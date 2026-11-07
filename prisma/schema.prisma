@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ListingType {
+  RENT
+  SALE
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum PropertyStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  fullName     String
+  email        String     @unique
+  passwordHash String
+  phone        String?
+  role         Role       @default(USER)
+  createdAt    DateTime   @default(now())
+  properties   Property[]
+  favorites    Favorite[]
+  inquiries    Inquiry[]
+}
+
+model Category {
+  id         Int        @id @default(autoincrement())
+  name       String
+  slug       String     @unique
+  properties Property[]
+}
+
+model Property {
+  id          Int             @id @default(autoincrement())
+  title       String
+  description String
+  price       Float
+  currency    String
+  listingType ListingType     @default(SALE)
+  status      PropertyStatus  @default(PENDING)
+  address     String
+  city        String
+  area        Float
+  rooms       Int
+  bathrooms   Int
+  createdAt   DateTime        @default(now())
+  userId      Int
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoryId  Int
+  category    Category        @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  images      PropertyImage[]
+  favorites   Favorite[]
+  inquiries   Inquiry[]
+}
+
+model PropertyImage {
+  id         Int      @id @default(autoincrement())
+  url        String
+  altText    String
+  propertyId Int
+  sortOrder  Int      @default(0)
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
+
+model Favorite {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  propertyId Int
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, propertyId])
+}
+
+model Inquiry {
+  id         Int      @id @default(autoincrement())
+  message    String
+  phone      String
+  senderId   Int
+  propertyId Int
+  sender     User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+}
