@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module.js';
 import { AdminModule } from './admin/admin.module.js';
 import { CategoriesModule } from './categories/categories.module.js';
 import { PropertiesModule } from './properties/properties.module.js';
+import { ImagesModule } from './images/images.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -25,6 +26,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     AdminModule,
     CategoriesModule,
     PropertiesModule,
+    ImagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
