@@ -8,6 +8,7 @@ import { AdminModule } from './admin/admin.module.js';
 import { CategoriesModule } from './categories/categories.module.js';
 import { PropertiesModule } from './properties/properties.module.js';
 import { ImagesModule } from './images/images.module.js';
+import { FavoritesModule } from './favorites/favorites.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -27,6 +28,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     CategoriesModule,
     PropertiesModule,
     ImagesModule,
+    FavoritesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
