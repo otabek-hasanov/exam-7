@@ -10,6 +10,7 @@ import { PropertiesModule } from './properties/properties.module.js';
 import { ImagesModule } from './images/images.module.js';
 import { FavoritesModule } from './favorites/favorites.module.js';
 import { InquiriesModule } from './inquiries/inquiries.module.js';
+import { UsersModule } from './users/users.module.js';
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
 
@@ -31,6 +32,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     ImagesModule,
     FavoritesModule,
     InquiriesModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
