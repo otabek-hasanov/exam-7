@@ -32,21 +32,21 @@ export class FavoritesService {
       throw new NotFoundException('E’lon topilmadi');
     }
 
-    const oldFavorite = await this.prisma.favorite.findUnique({
-      where: { userId_propertyId: { userId, propertyId } },
+    const oldFavorite = await this.prisma.favorite.findFirst({
+      where: { userId: userId, propertyId: propertyId },
     });
     if (oldFavorite) {
       throw new ConflictException('Bu e’lon allaqachon saqlangan');
     }
 
     return this.prisma.favorite.create({
-      data: { userId, propertyId },
+      data: { userId: userId, propertyId: propertyId },
     });
   }
 
   async remove(propertyId: number, userId: number) {
-    const favorite = await this.prisma.favorite.findUnique({
-      where: { userId_propertyId: { userId, propertyId } },
+    const favorite = await this.prisma.favorite.findFirst({
+      where: { userId: userId, propertyId: propertyId },
     });
     if (!favorite) {
       throw new NotFoundException('Saqlangan e’lon topilmadi');
