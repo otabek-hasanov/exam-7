@@ -2,13 +2,6 @@
 
 Ko‘chmas mulk e’lonlari platformasi uchun API. Foydalanuvchilar sotuv (SALE) yoki ijara (RENT) e’lonlarini ko‘radi, qidiradi, saqlaydi va sotuvchiga murojaat yuboradi. Seller o‘z e’lonlarini boshqaradi, Admin e’lonlarni tasdiqlaydi yoki rad etadi.
 
-## Jamoa
-
-| Ism | Rol |
-| --- | --- |
-| Otabek Hasanov | Backend |
-|  |  |
-|  |  |
 
 ## Texnologiyalar
 
